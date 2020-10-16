@@ -1,0 +1,204 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4BB7590D-3CD1-4AAC-AC8F-DB0534E11B4F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>OverlordProject</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\OverlordEngine\OverlordEngine.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\OverlordEngine\OverlordEngine.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Build\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Build\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)OverlordEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <Profile>
+      </Profile>
+      <IgnoreSpecificDefaultLibraries>libcpmtd.lib;libcmtd.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OV_LIBS)PhysX\bin\Debug\*" "$(OutDir)" /y /D
+xcopy "$(OV_LIBS)Fmod\bin\*" "$(OutDir)" /y /D</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../OverlordEngine/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>libcpmt.lib;libcmt.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OV_LIBS)PhysX\bin\Release\*" "$(OutDir)" /y /D
+xcopy "$(OV_LIBS)Fmod\bin\*" "$(OutDir)" /y /D</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="_MyPrefabs\ScenePrefabs\PF_Endscreen.cpp" />
+    <ClCompile Include="_MyPrefabs\ScenePrefabs\PF_GameMenu.cpp" />
+    <ClCompile Include="_Materials\Post\PostInvert.cpp" />
+    <ClCompile Include="_Materials\Post\PostVignette.cpp" />
+    <ClCompile Include="_MyPrefabs\ScenePrefabs\PF_Scoreboard.cpp" />
+    <ClCompile Include="_MyPrefabs\UI\PF_PlayerPawn.cpp" />
+    <ClCompile Include="_Scenes\SC_StartScreen.cpp" />
+    <ClCompile Include="_MyComponents\AnimatedSpriteComponent.cpp" />
+    <ClCompile Include="FromCourses\BoneObject.cpp" />
+    <ClCompile Include="_MyPrefabs\Objects\Camera\PF_OrthographicCamera.cpp" />
+    <ClCompile Include="_Scenes\SC_MainMenu.cpp" />
+    <ClCompile Include="_Materials\TextureDiffuseMaterial.cpp" />
+    <ClCompile Include="_MyHelpers\TimeManip.cpp" />
+    <ClCompile Include="_MyPrefabs\UI\PF_GymUI.cpp" />
+    <ClCompile Include="_MyPrefabs\Objects\PF_TheBall.cpp" />
+    <ClCompile Include="_MyPrefabs\Objects\Camera\PF_MultipleTargetCamera.cpp" />
+    <ClCompile Include="_MyPrefabs\ScenePrefabs\PF_GymEnviroment.cpp" />
+    <ClCompile Include="_Scenes\FontTestScene.cpp" />
+    <ClCompile Include="_Scenes\HardwareSkinningScene.cpp" />
+    <ClCompile Include="_Scenes\SC_GymScene.cpp" />
+    <ClCompile Include="_MyPrefabs\Objects\RobotCharacter\PF_RobotCharacter.cpp" />
+    <ClCompile Include="_MyPrefabs\ScenePrefabs\PF_WorkshopEnviroment.cpp" />
+    <ClCompile Include="_MyPrefabs\Objects\PF_Character.cpp" />
+    <ClCompile Include="FromCourses\SkinnedVertex.cpp" />
+    <ClCompile Include="_Materials\SkinnedDiffuseMaterial.cpp" />
+    <ClCompile Include="_Materials\ColorMaterial.cpp" />
+    <ClCompile Include="_Materials\SpikeyMaterial.cpp" />
+    <ClCompile Include="_Materials\UberMaterial.cpp" />
+    <ClCompile Include="_MyHelpers\FPSLogger.cpp" />
+    <ClCompile Include="_MyPrefabs\Objects\PF_Ground.cpp" />
+    <ClCompile Include="_MyHelpers\MyUtilities.cpp" />
+    <ClCompile Include="_Scenes\SC_Workshop.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OverlordEngine\OverlordEngine.vcxproj">
+      <Project>{634cfe8d-455c-45bf-94f0-bd0aab13e0e6}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="_MyPrefabs\ScenePrefabs\PF_Endscreen.h" />
+    <ClInclude Include="_MyPrefabs\ScenePrefabs\PF_GameMenu.h" />
+    <ClInclude Include="_Materials\Post\PostInvert.h" />
+    <ClInclude Include="_Materials\Post\PostVignette.h" />
+    <ClInclude Include="_MyPrefabs\ScenePrefabs\PF_Scoreboard.h" />
+    <ClInclude Include="_MyPrefabs\UI\PF_PlayerPawn.h" />
+    <ClInclude Include="_Scenes\SC_StartScreen.h" />
+    <ClInclude Include="_MyComponents\AnimatedSpriteComponent.h" />
+    <ClInclude Include="FromCourses\BoneObject.h" />
+    <ClInclude Include="_MyComponents\MyComponents.h" />
+    <ClInclude Include="_MyPrefabs\Objects\Camera\PF_OrthographicCamera.h" />
+    <ClInclude Include="_Scenes\SC_MainMenu.h" />
+    <ClInclude Include="_Materials\TextureDiffuseMaterial.h" />
+    <ClInclude Include="_MyHelpers\ILocator.h" />
+    <ClInclude Include="_MyHelpers\TimeManip.h" />
+    <ClInclude Include="_MyPrefabs\UI\PF_GymUI.h" />
+    <ClInclude Include="_MyPrefabs\Objects\PF_TheBall.h" />
+    <ClInclude Include="Utils.h" />
+    <ClInclude Include="_MyPrefabs\Objects\Camera\PF_MultipleTargetCamera.h" />
+    <ClInclude Include="_MyPrefabs\ScenePrefabs\PF_GymEnviroment.h" />
+    <ClInclude Include="_Scenes\FontTestScene.h" />
+    <ClInclude Include="_Scenes\HardwareSkinningScene.h" />
+    <ClInclude Include="_Scenes\SC_GymScene.h" />
+    <ClInclude Include="_Materials\Materials.h" />
+    <ClInclude Include="_MyPrefabs\Objects\RobotCharacter\PF_RobotCharacter.h" />
+    <ClInclude Include="_MyPrefabs\ScenePrefabs\PF_WorkshopEnviroment.h" />
+    <ClInclude Include="_MyPrefabs\Objects\MyPrefabs_ObjectPrefabs.h" />
+    <ClInclude Include="_MyPrefabs\ScenePrefabs\MyPrefabs_ScenePrefabs.h" />
+    <ClInclude Include="_MyPrefabs\Objects\PF_Character.h" />
+    <ClInclude Include="FromCourses\SkinnedVertex.h" />
+    <ClInclude Include="_Materials\SkinnedDiffuseMaterial.h" />
+    <ClInclude Include="_Materials\ColorMaterial.h" />
+    <ClInclude Include="_Materials\SpikeyMaterial.h" />
+    <ClInclude Include="_Materials\UberMaterial.h" />
+    <ClInclude Include="_MyHelpers\FPSLogger.h" />
+    <ClInclude Include="_MyPrefabs\Objects\PF_Ground.h" />
+    <ClInclude Include="_MyHelpers\MyUtilities.h" />
+    <ClInclude Include="_MyPrefabs\MyPrefabs.h" />
+    <ClInclude Include="_Scenes\SC_Workshop.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="MainGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="_MyHelpers\ILocator.inl" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
